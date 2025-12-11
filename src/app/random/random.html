@@ -1,0 +1,7 @@
+<button (click)="generate()">Generuj liczbę</button>
+
+<p>Wylosowana liczba: {{ generatedNumber }}</p>
+
+<p [ngStyle]="{ color: isLow() ? 'green' : 'red' }">
+  {{ isLow() ? 'Liczba mała (<= połowy)' : 'Liczba duża (> połowy)' }}
+</p>
