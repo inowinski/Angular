@@ -1,0 +1,19 @@
+<h2>Lista osób</h2>
+
+<a routerLink="/add">Dodaj nową osobę</a>
+
+<ul>
+  @for (person of persons; track $index; let i = $index) {
+    <li>
+      {{ person.firstName }} {{ person.familyName }}
+      —
+      <a [routerLink]="['/details', i]">szczegóły</a>
+      |
+      <button (click)="delete(i)">Usuń</button>
+    </li>
+  }
+</ul>
+
+@if (persons.length === 0) {
+  <p>Brak zapisanych osób.</p>
+}
