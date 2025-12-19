@@ -1,0 +1,27 @@
+### Dodanie nowej osoby
+POST http://localhost:8080/api/persons
+Content-Type: application/json
+
+{
+  "firstName": "Michal",
+  "familyName": "Nowinski",
+  "age": 22,
+  "city": "Szcecin",
+  "street": "Testowa 1",
+  "postCode": "00-001"
+}
+
+###
+
+### Pobranie wszystkich osób
+GET http://localhost:8080/api/persons
+
+###
+
+### Pobranie jednej osoby
+GET http://localhost:8080/api/persons/1
+
+###
+
+### Usunięcie osoby
+DELETE http://localhost:8080/api/persons/1
