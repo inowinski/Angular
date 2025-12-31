@@ -1,40 +1,35 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Person } from '../models/person';
-
-const STORAGE_KEY = 'persons';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PersonService {
 
-  private load(): Person[] {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+  private apiUrl = 'http://localhost:8080/api/persons';
+
+  constructor(private http: HttpClient) {}
+
+  getAll(): Observable<Person[]> {
+    return this.http.get<Person[]>(this.apiUrl);
   }
 
-  private save(persons: Person[]): void {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(persons));
+  getById(id: number): Observable<Person> {
+    return this.http.get<Person>(`${this.apiUrl}/${id}`);
   }
 
-  getAll(): Person[] {
-    return this.load();
+  add(person: Person): Observable<Person> {
+    return this.http.post<Person>(this.apiUrl, person);
   }
 
-  getByIndex(index: number): Person | undefined {
-    const persons = this.load();
-    return persons[index];
+  // ⬇️⬇️⬇️ TO DODAJ ⬇️⬇️⬇️
+  update(id: number, person: Person): Observable<Person> {
+    return this.http.put<Person>(`${this.apiUrl}/${id}`, person);
   }
 
-  add(person: Person): void {
-    const persons = this.load();
-    persons.push(person);
-    this.save(persons);
-  }
-
-  delete(index: number): void {
-    const persons = this.load();
-    persons.splice(index, 1);
-    this.save(persons);
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }

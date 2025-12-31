@@ -1,0 +1,35 @@
+.list-title {
+  text-align: center;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+
+.add-button-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.list-card {
+  max-width: 700px;
+  margin: auto;
+  padding: 12px;
+  border-radius: 16px;
+}
+
+.person-item {
+  padding: 12px 0;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 24px;
+  font-style: italic;
+  color: gray;
+}

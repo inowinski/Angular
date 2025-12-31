@@ -1,12 +1,28 @@
 import { Routes } from '@angular/router';
-import { ListComponent } from './components/list/list';
-import { DetailsComponent } from './components/details/details';
-import { AddPersonComponent } from './components/add-person/add-person';
-import { NotFoundComponent } from './components/not-found/not-found';
 
 export const routes: Routes = [
-  { path: '', component: ListComponent },
-  { path: 'details/:id', component: DetailsComponent },
-  { path: 'add', component: AddPersonComponent },
-  { path: '**', component: NotFoundComponent }
+  {
+    path: '',
+    loadComponent: () =>
+      import('./components/list/list')
+        .then(m => m.ListComponent)
+  },
+  {
+    path: 'add',
+    loadComponent: () =>
+      import('./components/add-person/add-person')
+        .then(m => m.AddPersonComponent)
+  },
+  {
+    path: 'edit/:id',   // ⬅️ KLUCZ
+    loadComponent: () =>
+      import('./components/add-person/add-person')
+        .then(m => m.AddPersonComponent)
+  },
+  {
+    path: 'details/:id',
+    loadComponent: () =>
+      import('./components/details/details')
+        .then(m => m.DetailsComponent)
+  }
 ];

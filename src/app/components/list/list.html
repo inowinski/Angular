@@ -1,19 +1,70 @@
-<h2>Lista osób</h2>
+<h2 class="list-title">Lista osób</h2>
 
-<a routerLink="/add">Dodaj nową osobę</a>
+<div class="add-button-container">
+  <a
+    mat-raised-button
+    color="primary"
+    routerLink="/add"
+  >
+    ➕ Dodaj osobę
+  </a>
+</div>
 
-<ul>
-  @for (person of persons; track $index; let i = $index) {
-    <li>
-      {{ person.firstName }} {{ person.familyName }}
-      —
-      <a [routerLink]="['/details', i]">szczegóły</a>
-      |
-      <button (click)="delete(i)">Usuń</button>
-    </li>
+<mat-card class="list-card">
+
+  @if (persons().length > 0) {
+
+    <mat-list>
+
+      @for (person of persons(); track $index) {
+        <mat-list-item class="person-item">
+
+          <span matListItemTitle>
+            {{ person.firstName || 'Brak imienia' }}
+            {{ person.familyName || '' }}
+          </span>
+
+          <span matListItemLine>
+            ID: {{ person.id }}
+          </span>
+
+          <div class="actions">
+            <a
+              mat-button
+              color="primary"
+              [routerLink]="['/details', person.id]"
+            >
+              Szczegóły
+            </a>
+
+            <a
+              mat-button
+              color="accent"
+              [routerLink]="['/edit', person.id]"
+            >
+              Edytuj
+            </a>
+
+            <button
+              mat-stroked-button
+              color="warn"
+              (click)="delete(person.id!)"
+            >
+              Usuń
+            </button>
+          </div>
+
+        </mat-list-item>
+      }
+
+    </mat-list>
+
+  } @else {
+
+    <mat-card-content class="empty-state">
+      Brak danych.
+    </mat-card-content>
+
   }
-</ul>
 
-@if (persons.length === 0) {
-  <p>Brak zapisanych osób.</p>
-}
+</mat-card>

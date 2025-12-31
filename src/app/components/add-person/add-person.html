@@ -1,43 +1,81 @@
-<h2>Dodaj osobę</h2>
+<h2 class="form-title">Dodaj osobę</h2>
 
-<form>
-  <label>
-    Imię:
-    <input type="text" [(ngModel)]="person.firstName" name="firstName">
-  </label>
-  <br><br>
+<form class="person-form">
 
-  <label>
-    Nazwisko:
-    <input type="text" [(ngModel)]="person.familyName" name="familyName">
-  </label>
-  <br><br>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Imię</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="person.firstName"
+      name="firstName"
+      required
+    >
+  </mat-form-field>
 
-  <label>
-    Wiek:
-    <input type="number" [(ngModel)]="person.age" name="age">
-  </label>
-  <br><br>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nazwisko</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="person.familyName"
+      name="familyName"
+      required
+    >
+  </mat-form-field>
 
-  <h3>Adres</h3>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Wiek</mat-label>
+    <input
+      matInput
+      type="number"
+      [(ngModel)]="person.age"
+      name="age"
+      min="0"
+    >
+  </mat-form-field>
 
-  <label>
-    Miasto:
-    <input type="text" [(ngModel)]="person.address.city" name="city">
-  </label>
-  <br><br>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Miasto</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="person.city"
+      name="city"
+    >
+  </mat-form-field>
 
-  <label>
-    Ulica:
-    <input type="text" [(ngModel)]="person.address.street" name="street">
-  </label>
-  <br><br>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Ulica</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="person.street"
+      name="street"
+    >
+  </mat-form-field>
 
-  <label>
-    Kod pocztowy:
-    <input type="text" [(ngModel)]="person.address.postCode" name="postCode">
-  </label>
-  <br><br>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Kod pocztowy</mat-label>
+    <input
+      matInput
+      type="text"
+      [(ngModel)]="person.postCode"
+      name="postCode"
+      placeholder="00-000"
+    >
+  </mat-form-field>
 
-  <button type="button" (click)="save()">Zapisz</button>
+  <button
+    mat-raised-button
+    color="primary"
+    class="save-button"
+    type="button"
+    (click)="save()"
+  >
+    Zapisz
+  </button>
+
+  <input type="hidden" [(ngModel)]="person.id" name="id">
+
 </form>
